@@ -27,12 +27,12 @@ volk_32f_x2_add_32f_neonasm:
 	pld [aVector, #128] @ pre-load hint - this is implementation specific!
 	pld [bVector, #128] @ pre-load hint - this is implementation specific!
 
-	vld1.32	{d0-d1}, [aVector:128]!	@ aVal
+	vld1.32	{d0-d1}, [aVector]!	@ aVal
 	add	number, number, #1
-	vld1.32	{d2-d3}, [bVector:128]!	@ bVal
+	vld1.32	{d2-d3}, [bVector]!	@ bVal
 	vadd.f32 cVal, bVal, aVal
 	cmp	number, quarterPoints
-	vst1.32	{d4-d5}, [cVector:128]!	@ cVal
+	vst1.32	{d4-d5}, [cVector]!	@ cVal
 
 	blt	.loop1	@ first loop
 

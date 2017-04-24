@@ -40,8 +40,8 @@ volk_32fc_32f_dot_prod_32fc_a_neonasmvmla:
 	@ do work here
 	pld [taps, #128] @ pre-load hint - this is implementation specific!
 	pld [input, #128] @ pre-load hint - this is implementation specific!
-	vld1.32 {tapsVal}, [taps:128]! @ tapsVal
-	vld2.32 {inRealVal-inCompVal}, [input:128]! @ inRealVal, inCompVal
+	vld1.32 {tapsVal}, [taps]! @ tapsVal
+	vld2.32 {inRealVal-inCompVal}, [input]! @ inRealVal, inCompVal
 	vmla.f32 realAccQ, tapsVal, inRealVal
 	vmla.f32 compAccQ, tapsVal, inCompVal
 	subs number, number, #1

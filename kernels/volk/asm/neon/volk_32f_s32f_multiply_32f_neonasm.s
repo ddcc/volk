@@ -27,9 +27,9 @@ volk_32f_s32f_multiply_32f_neonasm:
 
     @ this is giving fits. Current theory is hf has something to do with it
     .loop1:
-    @  vld1.32 {q1}, [r4:128]! @ aVal
+    @  vld1.32 {q1}, [r4]! @ aVal
     @  vmul.f32 q3, q1, q2
-    @  vst1.32	{q3}, [r5:128]! @ cVal
+    @  vst1.32	{q3}, [r5]! @ cVal
     @
     @  subs r10, r10, #1
     @  bne	.loop1	@ first loop

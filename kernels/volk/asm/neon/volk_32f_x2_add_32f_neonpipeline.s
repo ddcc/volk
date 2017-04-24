@@ -26,8 +26,8 @@ volk_32f_x2_add_32f_neonpipeline:
 	mov number, quarterPoints
 
 	@ Optimizing for pipeline
-	vld1.32	{d0-d1}, [aVector:128]!	@ aVal
-	vld1.32	{d2-d3}, [bVector:128]!	@ bVal
+	vld1.32	{d0-d1}, [aVector]!	@ aVal
+	vld1.32	{d2-d3}, [bVector]!	@ bVal
 	subs number, number, #1
     beq .flushpipe
 
@@ -35,9 +35,9 @@ volk_32f_x2_add_32f_neonpipeline:
 	pld [aVector, #128] @ pre-load hint - this is implementation specific!
 	pld [bVector, #128] @ pre-load hint - this is implementation specific!
 	vadd.f32 cVal, bVal, aVal
-	vld1.32 {d0-d1}, [aVector:128]! @ aVal
-	vld1.32 {d2-d3}, [bVector:128]! @ bVal
-	vst1.32	{d4-d5}, [cVector:128]! @ cVal
+	vld1.32 {d0-d1}, [aVector]! @ aVal
+	vld1.32 {d2-d3}, [bVector]! @ bVal
+	vst1.32	{d4-d5}, [cVector]! @ cVal
 
 	subs number, number, #1
 	bne	.loop1	@ first loop
@@ -45,7 +45,7 @@ volk_32f_x2_add_32f_neonpipeline:
 .flushpipe:
 	@ One more time
 	vadd.f32 cVal, bVal, aVal
-	vst1.32	{d4-d5}, [cVector:128]! @ cVal
+	vst1.32	{d4-d5}, [cVector]! @ cVal
 
 	mov	number, quarterPoints, asl #2
 

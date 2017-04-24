@@ -40,8 +40,8 @@
     @ do work here
     @pld [taps, #128] @ pre-load hint - this is implementation specific!
     @pld [input, #128] @ pre-load hint - this is implementation specific!
-    vld1.32 {d4-d5}, [taps:128]! @ tapsVal
-    vld2.32 {d20-d23}, [input:128]! @ inRealVal, inCompVal
+    vld1.32 {d4-d5}, [taps]! @ tapsVal
+    vld2.32 {d20-d23}, [input]! @ inRealVal, inCompVal
     vmul.f32 realMul, tapsVal, inRealVal
     vmul.f32 compMul, tapsVal, inCompVal
     vadd.f32 realAccQ, realAccQ, realMul

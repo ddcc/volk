@@ -28,8 +28,8 @@ volk_32f_x2_dot_prod_32f_neonasm:
 	pld [aVector, #128] @ pre-load hint - this is implementation specific!
 	pld [bVector, #128] @ pre-load hint - this is implementation specific!
 
-	vld1.32	{q1}, [aVector:128]!	@ aVal
-	vld1.32	{q2}, [bVector:128]!	@ bVal
+	vld1.32	{q1}, [aVector]!	@ aVal
+	vld1.32	{q2}, [bVector]!	@ bVal
     vmla.f32 q0, q1, q2
 
 	add	number, number, #1

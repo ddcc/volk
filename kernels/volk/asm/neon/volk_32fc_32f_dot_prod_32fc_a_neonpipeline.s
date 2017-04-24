@@ -40,8 +40,8 @@ volk_32fc_32f_dot_prod_32fc_a_neonpipeline:
 	@mov number, quarterPoints
 	mov number, #0
 	@ Optimizing for pipeline
-	vld1.32 {tapsVal}, [taps:128]! @ tapsVal
-	vld2.32 {inRealVal-inCompVal}, [input:128]! @ inRealVal, inCompVal
+	vld1.32 {tapsVal}, [taps]! @ tapsVal
+	vld2.32 {inRealVal-inCompVal}, [input]! @ inRealVal, inCompVal
 	add number, number, #1
 
 .loop1:
@@ -52,8 +52,8 @@ volk_32fc_32f_dot_prod_32fc_a_neonpipeline:
 	vmul.f32 compMul, tapsVal, inCompVal
 	vadd.f32 realAccQ, realAccQ, realMul
 	vadd.f32 compAccQ, compAccQ, compMul
-	vld1.32 {tapsVal}, [taps:128]! @ tapsVal
-	vld2.32 {inRealVal-inCompVal}, [input:128]! @ inRealVal, inCompVal
+	vld1.32 {tapsVal}, [taps]! @ tapsVal
+	vld2.32 {inRealVal-inCompVal}, [input]! @ inRealVal, inCompVal
 
 	@subs number, number, #1
 	@bls	.loop1	@ first loop
